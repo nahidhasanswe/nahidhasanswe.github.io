@@ -1,0 +1,97 @@
+﻿<md-dialog>
+    <form name="projectForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Apply for Leave</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:700px">
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <md-input-container flex="50">
+                        <label>From</label>
+                        <md-datepicker required="" md-date-filter="weekendHolyday" name="formDate" ng-model="leaveApply.formDate" md-open-on-focus></md-datepicker>
+                        <div ng-messages="projectForm.formDate.$error">
+                            <div ng-message="required">From Date is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>To</label>
+                        <md-datepicker required="" md-date-filter="weekendHolyday" name="toDate" ng-model="leaveApply.toDate" md-open-on-focus></md-datepicker>
+                        <div ng-messages="projectForm.toDate.$error">
+                            <div ng-message="required">To Date is required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex="100">
+                        <label>Reason/Comments:</label>
+                        <textarea ng-model="user.biography" rows="2" cols="15" md-select-on-focus></textarea>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <label flex="50" class="md-required">Leave applied for: </label>
+                    <md-input-container flex="50">
+                        <md-radio-group ng-model="leave.leaveFor" layout="column" layout-align="start start" required="">
+                            <md-radio-button value="Annual">Annual</md-radio-button>
+                            <md-radio-button value="Casual"> Casual </md-radio-button>
+                            <md-radio-button value="Sick"> Sick </md-radio-button>
+                            <md-radio-button value="Other"> Other </md-radio-button>
+                        </md-radio-group>
+                        <div ng-messages="projectForm.leave.leaveFor.$error">
+                            <div ng-message="required">Applied for is required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row" ng-if="leave.leaveFor=='Other'">
+                    <md-input-container flex="80">
+                        <label>Other</label>
+                        <md-select name="type" ng-model="leave.leaveForOther">
+                            <md-option value="app">Application</md-option>
+                            <md-option value="web">Website</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="start start">
+                    <div flex="50">
+                        <label>Leave for half Day</label>
+                    </div>
+                    <div>
+                        <md-checkbox ng-model="isTime" aria-label="Checkbox 1"></md-checkbox>
+                        <label>Time</label>
+                                          
+                    </div>
+                </div>
+                <div ng-if="isTime" layout="row" layout-align="start center">
+                    <md-input-container flex="50">
+                        <label>From Time</label>
+                        <input ng-model="fromTime" ng-required="isTime" name="timeFrom" ng-focus="showTimePicker1($event)">
+                        <div ng-messages="projectForm.timeFrom.$error ">
+                            <div ng-message="required">Time is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>To Time</label>
+                        <input ng-model="toTime" ng-required="isTime" name="timeTo" ng-focus="showTimePicker2($event)">
+                        <div ng-messages="projectForm.timeTo.$error ">
+                            <div ng-message="required">Time is required</div>
+                        </div>
+                    </md-input-container>   
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button  ng-click="hide()">
+               Cancel
+            </md-button>
+            <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>
+                Apply for leave
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,53 @@
+﻿<md-dialog>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Leave Details</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:700px; min-width:400px">
+            <div class="md-dialog-content">
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">From Date</label>
+                    <span flex="50">{{leaveDetail.fromDate}}</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">To Date</label>
+                    <span flex="50">{{leaveDetail.toDate}}</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">Leave For</label>
+                    <span flex="50">{{leaveDetail.leaveFor}}</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">Number of Day</label>
+                    <span flex="50">{{leaveDetail.numberOfDays}}</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">Reason/Comments</label>
+                    <span flex="50">N/A</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">Apply Date</label>
+                    <span flex="50">{{leaveDetail.applyDate}}</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">Approve Date</label>
+                    <span flex="50">{{leaveDetail.approveDate}}</span>
+                </div>
+                <div layout="row">
+                    <label style="font-weight:bold" flex="50">Status</label>
+                    <span flex="50">{{leaveDetail.status}}</span>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+</md-dialog>

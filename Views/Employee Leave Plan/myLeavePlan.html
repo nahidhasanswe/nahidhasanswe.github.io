@@ -1,0 +1,130 @@
+﻿<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">My Leave Details</h3>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-xlg-12">
+      <div class="card">
+          <div class="card-block">
+              <div class="row">
+                  <div class="col-sm-3">
+                      <md-button class="md-raised button-success" ng-click="RequestForLeave($event)"><i class="fa fa-share-square-o"></i> Request for leave</md-button>
+                  </div>
+              </div>
+              <br />
+              <div class="row">
+                  <div class="col-sm-3">
+                      <md-input-container class="md-block" flex-gt-sm>
+                          <label>Select Year</label>
+                          <md-select ng-model="leave.year">
+                              <md-option ng-repeat="year in years" ng-selected="{{year==currentYear}}" value="{{year}}">
+                                  {{year}}
+                              </md-option>
+                          </md-select>
+                      </md-input-container>
+                  </div>
+                  <div class="col-sm-3">
+                      <md-input-container class="md-block" flex-gt-sm>
+                          <label>Status</label>
+                          <md-select ng-model="leave.status">
+                              <md-option ng-repeat="st in status" ng-selected="$first" value="{{st.value}}">
+                                  {{st.text}}
+                              </md-option>
+                          </md-select>
+                      </md-input-container>
+                  </div>
+                  <div class="col-sm-3">
+                      <md-input-container class="md-block" flex-gt-sm>
+                          <label>View Per Page</label>
+                          <md-select ng-model="leave.viewPerPage" ng-change="changeViewPerPage(leave.viewPerPage)">
+                              <md-option ng-repeat="viewNumber in viewPerPage" ng-selected="$first" value="{{viewNumber}}">
+                                  {{viewNumber}}
+                              </md-option>
+                          </md-select>
+                      </md-input-container>
+                  </div>
+                  <div class="col-sm-3">
+                      <div layout="row" layout-align="end end">
+                          <md-menu>
+                              <md-button aria-label="Open phone interactions menu" class="button-cyan md-raised" style="color:black !important" ng-click="$mdMenu.open($event)">
+                                  Download
+                                  <i style="color:black" class="fa fa-download"></i>
+                              </md-button>
+                              <md-menu-content width="3">
+                                  <md-menu-item>
+                                      <md-button ng-click="ctrl.redial($event)" onclick="$('#myLeave').tableExport({ type: 'excel', pdfFontSize: 12, escape: 'false', fileName: 'MyLeaveDetails' });">
+                                          <i class="fa fa-table" md-menu-align-target></i>&nbsp; &nbsp; Table Data
+                                      </md-button>
+                                  </md-menu-item>
+                                  <md-menu-item>
+                                      <md-button disabled="disabled" ng-click="ctrl.checkVoicemail()">
+                                          <i class="fa fa-file-pdf-o" md-menu-align-target></i>&nbsp; &nbsp; PDF
+                                      </md-button>
+                                  </md-menu-item>
+                                  <md-menu-divider></md-menu-divider>
+                                  <md-menu-item>
+                                      <md-button ng-click="ctrl.toggleNotifications()">
+                                          <i class="fa fa-list" md-menu-align-target></i>&nbsp; &nbsp; Total Data
+                                      </md-button>
+                                  </md-menu-item>
+                              </md-menu-content>
+                          </md-menu>
+                      </div>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                  <table class="table" id="myLeave">
+                      <thead>
+                          <tr>
+                              <th><b>#</b></th>
+                              <th><b>From Date</b></th>
+                              <th><b>To Date</b></th>
+                              <th><b>Leave For</b></th>
+                              <th><b>Number of Day</b></th>
+                              <th><b>Apply Date</b></th>
+                              <th><b>Approve Date</b></th>
+                              <th><b>Status</b></th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr dir-paginate="leaveDetail in leaveDetails|filter:{status:leave.status}:strict|itemsPerPage:ViewPerPage">
+                              <td>{{$index}}</td>
+                              <td>{{leaveDetail.fromDate|date}}</td>
+                              <td>{{leaveDetail.toDate|date}}</td>
+                              <td>{{leaveDetail.leaveFor}}</td>
+                              <td>{{leaveDetail.numberOfDays}}</td>
+                              <td>{{leaveDetail.applyDate|date}}</td>
+                              <td>{{leaveDetail.approveDate|date}}</td>
+                              <td>{{leaveDetail.status}}</td>
+                              <td>
+                                  <div layout="row" layout-align="start center">
+                                      <md-button class="md-raised md-icon-button md-mini md-primary md-hue-1" ng-click="viewLeaveDetails($event,leaveDetail)" aria-label="More">
+                                          <md-tooltip md-direction="left">View Details</md-tooltip>
+                                          <i class="fa fa-eye"></i>
+                                      </md-button>
+                                      <md-button ng-if="!leaveDetail.status" class="md-raised md-icon-button md-mini button-lime md-hue-2" aria-label="More">
+                                          <md-tooltip md-direction="right">Update</md-tooltip>
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                      </md-button>
+                                  </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div class="row">
+                  <div style="margin-left:20px;">
+                      <dir-pagination-controls max-size="10"
+                                               template-url="dirPagination.tpl.html"
+                                               direction-links="true"
+                                               boundary-links="true">
+                      </dir-pagination-controls>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

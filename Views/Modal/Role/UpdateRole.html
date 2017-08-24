@@ -1,0 +1,33 @@
+﻿<md-dialog>
+    <form name="RoleForm" ng-submit="updateRole(RoleForm.$invalid,$event,Role)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Update Role</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Role Name</label>
+                    <input name="RoleName" type="text" ng-model="Role.RoleName" required />
+                    <div ng-messages="RoleForm.RoleName.$error">
+                        <div ng-message="required">Role Name is Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Update Role
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

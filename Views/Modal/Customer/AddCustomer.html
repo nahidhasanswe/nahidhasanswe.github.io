@@ -1,0 +1,81 @@
+﻿<md-dialog>
+    <form name="CustomerForm" ng-submit="saveCustomer(CustomerForm.$invalid,customer,$event)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Add Customer</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Customer Account No</label>
+                    <input name="EmployeeId" type="text" ng-model="customer.AccountNo" required />
+                    <div ng-messages="CustomerForm.EmployeeId.$error">
+                        <div ng-message="required">Customer Acc No Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Customer Name</label>
+                    <input name="EmployeeName" type="text" ng-model="customer.AccHolderName" required />
+                    <div ng-messages="CustomerForm.EmployeeName.$error">
+                        <div ng-message="required">Customer Name Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Address</label>
+                    <textarea type="text" name="Address" ng-model="customer.Address" rows="3" required></textarea>
+                    <div ng-messages="CustomerForm.Address.$error">
+                        <div ng-message="required">Address is required</div>
+                    </div>
+                </md-input-container>
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Balance</label>
+                        <input type="number" ng-model="customer.Balance" name="Balance" min="0" max="500000" required/>
+                        <div ng-messages="CustomerForm.Balance.$error">
+                            <div ng-message="required">Balance is required</div>
+                            <div ng-message="min">Not less than 0</div>
+                            <div ng-message="max">Maximum exceeds</div>
+                        </div>
+                    </md-input-container>
+                    <div flex="50">
+                        <md-autocomplete flex required
+                                         md-input-name="Branch"
+                                         md-input-minlength="2"
+                                         md-input-maxlength="18"
+                                         md-no-cache="noCache"
+                                         md-selected-item="seletedItem"
+                                         md-search-text="searchText"
+                                         md-items="item in querySearch(searchText)"
+                                         md-item-text="item.display"
+                                         md-require-match
+                                         md-floating-label="Branch">
+                            <md-item-template>
+                                <span md-highlight-flags="i">{{item.display}}</span>
+                            </md-item-template>
+                            <div ng-messages="CustomerForm.Branch.$error">
+                                <div ng-message="required">Branch is required</div>
+                                <div ng-message="md-require-match">Please select an existing Branch</div>
+                                <div ng-message="minlength">Your entry is not long enough.</div>
+                                <div ng-message="maxlength">Your entry is too long.</div>
+                            </div>
+                        </md-autocomplete>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Save Customer
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

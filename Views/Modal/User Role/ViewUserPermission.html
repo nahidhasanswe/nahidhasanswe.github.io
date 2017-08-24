@@ -1,0 +1,42 @@
+﻿<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white !important">Permission list of {{UserRole.EmployeeName}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                <i class="fa fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:700px; min-width:400px">
+        <div class="md-dialog-content">
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Employee Id:</label>
+                <span flex="50">{{UserRole.EmployeeId}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Employee Name:</label>
+                <span flex="50">{{UserRole.EmployeeName}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Role Name:</label>
+                <span flex="50">{{UserRole.RoleName}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Permission List:</label>
+                <div layout="column" layout-align="center start" flex="50">
+                    <br />
+                    <div ng-repeat="permission in UserRole.AccessList">
+                        <span>{{permission.Name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>
+            Ok
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

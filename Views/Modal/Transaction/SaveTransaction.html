@@ -1,0 +1,75 @@
+﻿<md-dialog>
+    <form name="TransactionForm" ng-submit="saveTransaction(CustomerForm.$invalid,transaction,$event)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Add Transaction</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-autocomplete flex required
+                                 md-input-name="AccountNo"
+                                 md-input-minlength="4"
+                                 md-input-maxlength="18"
+                                 md-no-cache="noCache"
+                                 md-selected-item="seletedItem"
+                                 md-search-text="searchText"
+                                 md-items="item in querySearch(searchText)"
+                                 md-item-text="item.value"
+                                 md-require-match
+                                 md-floating-label="Account No">
+                    <md-item-template>
+                        <span md-highlight-flags="i">{{item.display}}</span>
+                    </md-item-template>
+                    <div ng-messages="TransactionForm.AccountNo.$error">
+                        <div ng-message="required">Acc No is required</div>
+                        <div ng-message="md-require-match">Please select an existing Account</div>
+                        <div ng-message="minlength">Your entry is not long enough.</div>
+                        <div ng-message="maxlength">Your entry is too long.</div>
+                    </div>
+                </md-autocomplete>
+                <md-input-container class="md-block">
+                    <label>Acc Holder Name</label>
+                    <input name="EmployeeName" type="text" ng-disabled="true" ng-model="seletedItem.display" required />
+                    <div ng-messages="TransactionForm.EmployeeName.$error">
+                        <div ng-message="required">Acc Holder name is required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Transaction Type</label>
+                    <md-select name="TransactionType" ng-model="transaction.TransactionType" required>
+                        <md-option value="Debit">Debit</md-option>
+                        <md-option value="Credit">Credit</md-option>
+                    </md-select>
+                    <div ng-messages="TransactionForm.TransactionType.$error">
+                        <div ng-message="required">Transaction Type is req  required</div>
+                    </div>
+                </md-input-container>
+                <div layout="row">
+                    <md-input-container class="md-block">
+                        <label>Balance</label>
+                        <input type="number" ng-model="transaction.DebitCreditBalance" name="Balance" min="0" max="500000" required />
+                        <div ng-messages="TransactionForm.Balance.$error">
+                            <div ng-message="required">Balance is required</div>
+                            <div ng-message="min">Not less than 0</div>
+                            <div ng-message="max">Maximum exceeds</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Save Transaction
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

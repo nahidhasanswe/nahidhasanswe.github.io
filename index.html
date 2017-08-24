@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/Leave.png">
+    <title>Unifill Group - Online Leave System</title>
+
+    <link href="assets/Styles/CustomeStyle.css" rel="stylesheet" />
+    <link href="assets/Styles/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/Styles/style.css" rel="stylesheet" />
+    <link href="assets/Styles/blue.css" rel="stylesheet" />
+    <link href="assets/bower_components/angular-material/angular-material.css" rel="stylesheet" />
+    <link href="assets/Styles/spinners.css" rel="stylesheet" />
+    <link href="assets/bower_components/Multiple Date Picker/multipleDatePicker.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+    <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="assets/bower_components/angular pretty json/ng-prettyjson.min.css" rel="stylesheet" />
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <link href="assets/bower_components/mdPickers/dist/mdPickers.min.css" rel="stylesheet" />
+    <link href="assets/bower_components/angular-ui-notification/angular-ui-notification.min.css" rel="stylesheet" />
+    <link href="assets/bower_components/SweetAlert2/sweetalert2.min.css" rel="stylesheet" />
+   
+    <base href="/">
+
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" ng-app="leaveAppModule">
+    
+ 
+
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div> 
+
+    <div id="main-wrapper">    
+        <div ng-controller="loginController">
+            <div ng-init="identifyAuth()" ng-if="isAuthenticate">
+                <header class="topbar">
+                    <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#/dashboard">
+                                <span>
+                                    <img src="assets/icons/diulogo.png" alt="homepage" class="dark-logo" style="height:50px; width:220px !important" />
+                                </span>
+                            </a>
+                        </div>
+                        <div class="navbar-collapse">
+
+                            <ul class="navbar-nav mr-auto mt-md-0 ">
+                                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                                <li class="nav-item hidden-sm-down">
+                                    <span style="color:white; font-weight:bold; font-size:35px; font-family:'Times New Roman'; margin-left:20px;">Hybrid Granularity &amp; Audit Trial Report</span>
+                                </li>
+                            </ul>
+                            <!-- ============================================================== -->
+                            <!-- User profile and search -->
+                            <!-- ============================================================== -->
+                            <ul class="navbar-nav my-lg-0">
+                                <md-menu>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" ng-click="$mdMenu.open($event)" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src="assets/icons/user.png" alt="user" class="profile-pic m-r-5" />ID: {{userId}}
+                                        </a>
+                                    </li>
+                                    <md-menu-content width="3">
+                                        <md-menu-item>
+                                            <md-button>
+                                                <i class="fa fa-list-ul" md-menu-align-target></i>&nbsp; &nbsp; View Details
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button ng-click="ChangePasswordModal()">
+                                                <i class="fa fa-key" md-menu-align-target></i>&nbsp; &nbsp; Change Password
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-divider></md-menu-divider>
+                                        <md-menu-item>
+                                            <md-button ng-click="SignOut()">
+                                                <i class="fa fa-sign-out" md-menu-align-target></i>&nbsp; &nbsp; Sign Out
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <!-- ============================================================== -->
+                <!-- Left Sidebar - style you can find in sidebar.scss  -->
+                <!-- ============================================================== -->
+                <aside class="left-sidebar">
+                    <div class="scroll-sidebar">
+                        <nav class="sidebar-nav">
+                            <ul id="sidebarnav">
+                                <li>
+                                    <a href="#/dashboard" class="waves-effect"><i class="fa fa-dashboard m-r-10" aria-hidden="true"></i>Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="#/Employee" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Employee List</a>
+                                </li>
+                                <li>
+                                    <a href="#/Customer" class="waves-effect"><i class="fa fa-users m-r-10" aria-hidden="true"></i>Customer List</a>
+                                </li>
+                                <li>
+                                    <a href="#/TransactionList" class="waves-effect"><i class="fa fa-exchange m-r-10" aria-hidden="true"></i>TransactionList</a>
+                                </li>
+                                <li>
+                                    <a href="#/Branch" class="waves-effect"><i class="fa fa-home m-r-10" aria-hidden="true"></i>Branch List</a>
+                                </li>
+                                <li>
+                                    <a href="#/Department" class="waves-effect"><i class="fa fa-list m-r-10" aria-hidden="true"></i>Department List</a>
+                                </li>
+                                <li>
+                                    <a href="#/Designation" class="waves-effect"><i class="fa fa-list m-r-10" aria-hidden="true"></i>Designation List</a>
+                                </li>
+                                <li>
+                                    <a href="#/SectionList" class="waves-effect"><i class="fa fa-list m-r-10" aria-hidden="true"></i>Section List</a>
+                                </li>
+                                <li>
+                                    <a href="#/RoleList" class="waves-effect"><i class="fa fa-key m-r-10" aria-hidden="true"></i>Role List</a>
+                                </li>
+                                <li>
+                                    <a href="#/UserRole" class="waves-effect"><i class="fa fa-columns m-r-10" aria-hidden="true"></i>User Role List</a>
+                                </li>
+                                <li>
+                                    <a href="#/PermissionList" class="waves-effect"><i class="fa fa-list m-r-10" aria-hidden="true"></i>Permission List</a>
+                                </li>
+                                <li>
+                                    <a href="#/AccessRole" class="waves-effect"><i class="fa fa-list m-r-10" aria-hidden="true"></i>Access Role</a>
+                                </li>
+                                <li>
+                                    <a href="#/Company" class="waves-effect"><i class="fa fa-list m-r-10" aria-hidden="true"></i>Company</a>
+                                </li>
+                                <li>
+                                    <a href="#/AuditReport" class="waves-effect"><i class="fa fa-search m-r-10" aria-hidden="true"></i>Audit Trial Report</a>
+                                </li>
+
+                            </ul>
+                            <div class="text-center m-t-30">
+                                <a href="#/login" ng-click="SignOut()" class="btn btn-danger"><i class="fa fa-sign-out"></i>&nbsp;Sign Out</a>
+                            </div>
+                        </nav>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- Main Container Page Start-->
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <data-ng-view></data-ng-view>
+            </div>
+            <!--
+                <footer class="footer text-center">
+                © 2017 Monster Admin by wrappixel.com
+            </footer>    
+            -->
+        </div>
+    </div>
+
+    <!--Theme Required Javascript -->
+    <script src="assets/bower_components/jquery.min.js"></script>
+    <script src="assets/Scripts/tether.min.js"></script>
+    <script src="assets/Scripts/bootstrap.min.js"></script>
+    <script src="assets/Scripts/jquery.slimscroll.js"></script>
+    <script src="assets/Scripts/waves.js"></script>
+    <script src="assets/Scripts/sidebarmenu.js"></script>
+    <script src="assets/Scripts/sticky-kit.min.js"></script>
+    <script src="assets/Scripts/custom.min.js"></script>
+    <script src="assets/Scripts/jQuery.style.switcher.js"></script>
+
+
+    <!--AngularJs Scripts Files -->
+    <script src="assets/bower_components/angular/angular.min.js"></script>
+    <script src="Providers/AuthProviders.js"></script>
+    <script src="assets/bower_components/Multiple Date Picker/moment.min.js"></script>
+    <script src="assets/bower_components/Multiple Date Picker/multipleDatePicker.js"></script>
+    <script src="assets/bower_components/angular-material/angular-material.min.js"></script>
+    <script src="assets/bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="assets/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="assets/bower_components/hammerjs/hammer.min.js"></script>
+    <script src="assets/bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="assets/bower_components/angular-password/angular-password.min.js"></script>
+    <script src="assets/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="assets/bower_components/dirPagination.js"></script>
+    <script src="assets/bower_components/ui-bootstrap-tpls.min.js"></script>
+    <script src="assets/bower_components/mdPickers/dist/mdPickers.js"></script>
+    <script src="assets/bower_components/SweetAlert2/sweetalert2.min.js"></script>
+    <script src="assets/bower_components/angular-ui-notification/angular-ui-notification.min.js"></script>
+    <script src="assets/bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+    <script src="assets/bower_components/angular pretty json/ng-prettyjson.min.js"></script>
+
+    
+    
+
+    <!-- PDF make and xls  -->
+    <script src="assets/Scripts/pdf exel/alasql.min.js"></script>
+    <script src="assets/Scripts/pdf exel/FileSaver.min.js"></script>
+    <script src="assets/Scripts/pdf exel/jspdf.min.js"></script>
+    <script src="assets/Scripts/pdf exel/jspdf.plugin.autotable.js"></script>
+    <script src="assets/Scripts/pdf exel/pdfmake.min.js"></script>
+    <script src="assets/Scripts/pdf exel/tableExport.min.js"></script>
+    <script src="assets/Scripts/pdf exel/vfs_font.js"></script>
+    <script src="assets/Scripts/pdf exel/xlsx.core.min.js"></script>
+
+
+
+
+    <!--AngularJs Controller Scripts-->
+    <script src="App Start/AngularModuleConfig.js"></script>
+    <script src="App Start/routeConfig.js"></script>
+    <script src="App Start/Identity.js"></script>
+    <script src="Controllers/dashController.js"></script>
+
+    <script src="Controllers/Employee Leave Controller/myLeaveController.js"></script>
+    <script src="Controllers/Employee Leave Controller/myYearlyLeaveController.js"></script>
+    <script src="Controllers/Account Controls/loginController.js"></script>
+    <script src="Controllers/Controller/AccessRoleController.js"></script>
+    <script src="Controllers/Controller/BranchController.js"></script>
+    <script src="Controllers/Controller/CompanyController.js"></script>
+    <script src="Controllers/Controller/CustomerController.js"></script>
+    <script src="Controllers/Controller/DepartmentController.js"></script>
+    <script src="Controllers/Controller/DesignationController.js"></script>
+    <script src="Controllers/Controller/EmployeeController.js"></script>
+    <script src="Controllers/Controller/PermissionController.js"></script>
+    <script src="Controllers/Controller/RoleController.js"></script>
+    <script src="Controllers/Controller/SectionController.js"></script>
+    <script src="Controllers/Controller/TransactionController.js"></script>
+    <script src="Controllers/Controller/UserPermissionController.js"></script>
+    <script src="Controllers/Controller/UserRoleController.js"></script>
+    <script src="Controllers/Controller/AuditController.js"></script>
+    <script src="Controllers/Account Controls/Auth.js"></script>
+    <script src="Controllers/Account Controls/errorController.js"></script>
+
+    
+    <!--Services -->
+    <script src="Services/EmployeeLeaveServices.js"></script>
+    <script src="Services/GetDataServices.js"></script>
+    <script src="Services/SaveDataServices.js"></script>
+    <script src="Services/UpdateDataServices.js"></script>
+    <script src="Services/Filter Services.js"></script>
+    <script src="Services/PermissionServices.js"></script>
+    
+</body>
+
+</html>

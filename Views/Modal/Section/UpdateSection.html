@@ -1,0 +1,44 @@
+﻿<md-dialog>
+    <form name="SectionForm" ng-submit="updateSection(CustomerForm.$invalid,$event,Section)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Update Section</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Section Name</label>
+                    <input name="SectionName" type="text" ng-model="Section.SectionName" required />
+                    <div ng-messages="SectionForm.SectionName.$error">
+                        <div ng-message="required">Section Name is Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex="50">
+                    <label>Department</label>
+                    <md-select name="Department" ng-model="Section.DepartmentId" required>
+                        <md-option ng-repeat="department in DepartmentList" ng-value="department.DepartmentId">
+                            {{department.DepartmentName}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="SectionForm.Department.$error">
+                        <div ng-message="required">Department is required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Update Section
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

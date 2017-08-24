@@ -1,0 +1,34 @@
+﻿<md-dialog>
+    <form name="projectForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Select Yearly Leave Plan</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px; max-height:500px">
+            <div class="md-dialog-content">
+                 <div style="width:100%">
+                     <multiple-date-picker ng-model="daySelected" month="selectedYearForPlan" highlight-days="highlightDays" week-days-off="[0, 5]" disable-days-before="startDateofYear" disable-days-after="endDateofYear"></multiple-date-picker>
+                 </div>
+                <br />
+                <div layout="row" layout-align="center center">
+                    <h4 style="color:darkblue">Selected Days</h4>
+                    <h4 style="margin-left:5px !important; color:deeppink">{{daySelected.length}}</h4>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button ng-click="SubmitYearlyPlan(daySelected)" style="margin-right:20px;" md-autofocus>
+                Apply yearly leave plan
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

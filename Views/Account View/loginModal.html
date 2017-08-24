@@ -1,0 +1,36 @@
+﻿<md-dialog>
+    <form name="loginForm" ng-submit="SignIn(loginForm.$invalid,account)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Sign In</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:700px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <input type="text" name="UserName" aria-label="username" ng-model="account.userName" required>
+                    <label>Employee Id</label>
+                    <div ng-messages="loginForm.UserName.$error">
+                        <div ng-message="required">Employee Id required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input type="password" name="PassWord" aria-label="password" ng-model="account.password" required>
+                    <label>Password</label>
+                    <div ng-messages="loginForm.PassWord.$error">
+                        <div ng-message="required">Password is required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button>Forgot Password</md-button>
+            <span flex></span>
+            <div layout="row">
+                <md-button ng-disabled="!button" type="submit" style="margin-right:20px;" md-autofocus>
+                    {{buttonText}}
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

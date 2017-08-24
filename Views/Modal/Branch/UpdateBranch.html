@@ -1,0 +1,47 @@
+﻿<md-dialog>
+    <form name="BarnchForm" ng-submit="updateBranch(BarnchForm.$invalid,$event,Branch)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Update Branch</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Branch Name</label>
+                    <input name="BranchName" type="text" ng-model="Branch.BranchName" required />
+                    <div ng-messages="BarnchForm.BranchName.$error">
+                        <div ng-message="required">Branch Name is Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Swift Code</label>
+                    <input name="Swiftcode" type="text" ng-model="Branch.SwiftCode" required />
+                    <div ng-messages="BarnchForm.Swiftcode.$error">
+                        <div ng-message="required">Branch Address is Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Branch Address</label>
+                    <textarea type="text" name="BranchAddress" ng-model="Branch.Address" rows="3" required></textarea>
+                    <div ng-messages="BarnchForm.BranchAddress.$error">
+                        <div ng-message="required">Address is required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Update Branch
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

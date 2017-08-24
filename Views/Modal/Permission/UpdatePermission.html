@@ -1,0 +1,47 @@
+﻿<md-dialog>
+    <form name="PermissionForm" ng-submit="updatePermission(PermissionForm.$invalid,$event,rolePermission)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Update Permission</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Role Name</label>
+                    <input name="RoleName" type="text" ng-model="rolePermission.RoleName" required disabled/>
+                    <div ng-messages="PermissionForm.RoleName.$error">
+                        <div ng-message="required">Role Name is Required</div>
+                    </div>
+                </md-input-container>
+                <div flex-xs flex="100">
+                    <md-checkbox aria-label="Select All"
+                                 ng-checked="isChecked()"
+                                 md-indeterminate="isIndeterminate()"
+                                 ng-disabled="isSetRole"
+                                 ng-click="toggleAll()">
+                        <span ng-if="isChecked()">Un-</span>Select All
+                    </md-checkbox>
+                </div>
+                <div class="demo-select-all-checkboxes" style="margin-left:50px" flex="100" ng-repeat="item in PermissionList">
+                    <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                        {{ item.Name}}
+                    </md-checkbox>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Update Permission
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

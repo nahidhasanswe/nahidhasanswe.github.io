@@ -1,0 +1,15 @@
+{
+  "name": "angular-material-time-picker",
+  "homepage": "https://github.com/classlinkinc/angular-material-time-picker",
+  "version": "1.0.6",
+  "_release": "1.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.6",
+    "commit": "25e8abb3ab1bdf2e5ee600dc3b7fef7ce71a4930"
+  },
+  "_source": "https://github.com/classlinkinc/angular-material-time-picker.git",
+  "_target": "^1.0.6",
+  "_originalSource": "angular-material-time-picker",
+  "_direct": true
+}

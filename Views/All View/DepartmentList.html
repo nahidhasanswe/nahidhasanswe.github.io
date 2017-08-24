@@ -1,0 +1,55 @@
+﻿<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Department List</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xlg-12">
+        <div class="card">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <md-button class="md-raised button-success" ng-click="addDepartment($event)"><i class="fa fa-share-square-o"></i> Add Department</md-button>
+                    </div>
+                </div>
+                <br />
+
+                <div class="table-responsive">
+                    <table class="table" id="myLeave">
+                        <thead>
+                            <tr>
+                                <th><b>#</b></th>
+                                <th><b>Department Name</b></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="department in DepartmentList|filter:{status:leave.status}:strict|itemsPerPage:8">
+                                <td>{{$index}}</td>
+                                <td>{{department.DepartmentName}}</td>
+                                <td>
+                                    <div layout="row" layout-align="start center">
+                                        <md-button ng-click="updateDepartmentModal($event,department)" class="md-raised md-icon-button md-mini button-lime md-hue-2" aria-label="More">
+                                            <md-tooltip md-direction="right">Update</md-tooltip>
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </md-button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div style="margin-left:20px;">
+                        <dir-pagination-controls max-size="10"
+                                                 template-url="dirPagination.tpl.html"
+                                                 direction-links="true"
+                                                 boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

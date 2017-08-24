@@ -1,0 +1,134 @@
+﻿<md-dialog>
+    <form name="EmployeeForm" ng-submit="UpdateEmployee($event,EmployeeForm.$invalid,Employee)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Update Employee</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Employee Name</label>
+                    <input name="EmployeeName" type="text" ng-model="Employee.EmployeeName" required />
+                    <div ng-messages="EmployeeForm.EmployeeName.$error">
+                        <div ng-message="required">Employee Name Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input type="email" name="Email" ng-model="Employee.Email" required />
+                    <div ng-messages="EmployeeForm.Email.$error">
+                        <div ng-message="required">Email is required</div>
+                        <div ng-message="email">Enter valid email</div>
+                    </div>
+                </md-input-container>
+                <div layout="row">
+                    <md-input-container class="md-block" flex="50">
+                        <label>Designation</label>
+                        <md-select name="Designation" ng-model="Employee.DesignationId" required>
+                            <md-option ng-repeat="designation in DesignationList" ng-value="designation.DesignationId">
+                                {{designation.DesignationName}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="EmployeeForm.Designation.$error">
+                            <div ng-message="required">Designation is required</div>
+                        </div>
+                    </md-input-container>
+                    <div flex="50">
+                        <md-autocomplete flex required
+                                         md-input-name="ReportTo"
+                                         md-input-minlength="2"
+                                         md-input-maxlength="18"
+                                         md-no-cache="noCache"
+                                         md-selected-item="ReportToseletedItem"
+                                         md-search-text="TextSearch"
+                                         md-items="item in querySearch(TextSearch)"
+                                         md-item-text="item.Name"
+                                         md-require-match
+                                         md-floating-label="Report To Name">
+                            <md-item-template>
+                                <span md-highlight-flags="i">{{item.value}}-{{item.Name}}</span>
+                            </md-item-template>
+                            <div ng-messages="EmployeeForm.ReportTo.$error">
+                                <div ng-message="required">Please select to Report to</div>
+                                <div ng-message="md-require-match">Please select an existing Report to Name</div>
+                                <div ng-message="minlength">Your entry is not long enough.</div>
+                                <div ng-message="maxlength">Your entry is too long.</div>
+                            </div>
+                        </md-autocomplete>
+                    </div>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block" flex="50">
+                        <label>Department</label>
+                        <md-select name="Department" ng-change="selectDepartment(department)" ng-model="Employee.DepartmentId" required>
+                            <md-option ng-repeat="department in DepartmentList" ng-value="department.DepartmentId">
+                                {{department.DepartmentName}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="EmployeeForm.Department.$error">
+                            <div ng-message="required">Department is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="50">
+                        <label>Section</label>
+                        <md-select name="SectionId" ng-model="Employee.SectionId" required>
+                            <md-option ng-repeat="section in selectDepartment(Employee.DepartmentId)" ng-value="section.SectionId">
+                                {{section.SectionName}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="EmployeeForm.SectionId.$error">
+                            <div ng-message="required">Section is required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block" flex="50">
+                        <label>Location</label>
+                        <input name="Location" type="text" ng-model="Employee.Location" required />
+                        <div ng-messages="EmployeeForm.Location.$error">
+                            <div ng-message="required">Location is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="50">
+                        <label>Company</label>
+                        <md-select name="GroupId" ng-model="Employee.GroupId" required>
+                            <md-option ng-repeat="company in CompanyList" ng-value="company.Id">
+                                {{company.GroupName}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="EmployeeForm.GroupId.$error">
+                            <div ng-message="required">Please select to Report to</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <div flex="50">
+                        <md-button class="md-raised" ng-click="AddUserAccount(Employee)"><i class="fa fa-plus"></i> Add User Account</md-button>
+                    </div>
+                    <md-input-container>
+                        <label>Enter date</label>
+                        <md-datepicker ng-model="Employee.JoiningDate" name="JoiningDate" required></md-datepicker>
+                        <div ng-messages="EmployeeForm.JoiningDate.$error">
+                            <div ng-message="valid">The entered value is not a date!</div>
+                            <div ng-message="required">Date is required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Update Employee
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,40 @@
+﻿<md-dialog>
+    <form name="CompanyForm" ng-submit="saveCompany(CompanyForm.$invalid,$event,company)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Add Company</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Short Name</label>
+                    <input name="shortName" type="text" ng-model="company.Id" required />
+                    <div ng-messages="CompanyForm.shortName.$error">
+                        <div ng-message="required">Short Name is Required</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Company Full Name</label>
+                    <input name="fullName" type="text" ng-model="company.GroupName" required />
+                    <div ng-messages="CompanyForm.fullName.$error">
+                        <div ng-message="required">Company Name is Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hide()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Save Company
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -1,0 +1,65 @@
+﻿<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white !important">Employee Details</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                <i class="fa fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:700px; min-width:400px">
+        <div class="md-dialog-content">
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Employee Id:</label>
+                <span flex="50">{{Emp.EmployeeId}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Employee Name:</label>
+                <span flex="50">{{Emp.EmployeeName}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Email: </label>
+                <span flex="50">{{Emp.Email}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Designation: </label>
+                <span flex="50">{{Emp.Designation}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Section :</label>
+                <span flex="50">{{Emp.Section}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Department: </label>
+                <span flex="50">{{Emp.Department}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Report To Id: </label>
+                <span flex="50">{{Emp.ReportToId}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Report To Name: </label>
+                <span flex="50">{{Emp.ReportToName}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Joining Date: </label>
+                <span flex="50">{{Emp.JoiningDate|date}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Location: </label>
+                <span flex="50">{{Emp.Location}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Company: </label>
+                <span flex="50">{{Emp.GroupName}}</span>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>
+            Ok
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

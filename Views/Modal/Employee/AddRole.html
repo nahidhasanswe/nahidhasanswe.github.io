@@ -1,0 +1,51 @@
+﻿<md-dialog>
+    <form name="AccessRole" ng-submit="SubmitRole(AccessRole.$invalid)" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 style="color:white !important">Add Employee Access Permission</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hideRoleDialog()">
+                    <i class="fa fa-times"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="min-width:400px">
+            <div class="md-dialog-content">
+                    <md-input-container class="md-block">
+                        <label>Company</label>
+                        <md-select name="employeeRole" ng-model="employee.RoleId" ng-change="selectedRole(employee.RoleId)" required>
+                            <md-option ng-repeat="role in RoleList" ng-value="role.RoleId">
+                                {{role.RoleName}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="AccessRole.employeeRole.$error">
+                            <div ng-message="required">Employee Role is required</div>
+                        </div>
+                    </md-input-container>
+                <div flex-xs flex="100">
+                    <md-checkbox aria-label="Select All"
+                                 ng-checked="isChecked()"
+                                 md-indeterminate="isIndeterminate()"
+                                 ng-disabled="isSetRole"
+                                 ng-click="toggleAll()">
+                        <span ng-if="isChecked()">Un-</span>Select All
+                    </md-checkbox>
+                </div>
+                <div class="demo-select-all-checkboxes" style="margin-left:50px" flex="100" ng-repeat="item in AccessList">
+                    <md-checkbox ng-disabled="isSetRole" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                        {{ item }}
+                    </md-checkbox>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="hideRoleDialog()">
+                Cancel
+            </md-button>
+            <md-button type="submit" style="margin-right:20px;" md-autofocus>
+                Submit Role and Permission
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

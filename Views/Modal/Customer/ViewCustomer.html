@@ -1,0 +1,41 @@
+﻿<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white !important">Customer Details- {{Customer.AccHolderName}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                <i class="fa fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:700px; min-width:400px">
+        <div class="md-dialog-content">
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Account No:</label>
+                <span flex="50">{{Customer.AccountNo}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Acc Holder Name:</label>
+                <span flex="50">{{Customer.AccHolderName}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Address: </label>
+                <span flex="50" style="white-space: pre-line !important;">{{Customer.Address}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Balance: </label>
+                <span flex="50">BDT. {{Customer.Balance}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Branch :</label>
+                <span flex="50">{{Customer.Branch}}</span>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>
+            Ok
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

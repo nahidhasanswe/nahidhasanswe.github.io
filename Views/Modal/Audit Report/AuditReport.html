@@ -1,0 +1,61 @@
+﻿<md-dialog>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white !important">Employee Details</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" aria-label="ShowHideAccountant" ng-click="hide()">
+                <i class="fa fa-times"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:700px; width:inherit">
+        <div class="md-dialog-content">
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Employee Id:</label>
+                <span flex="50">{{audit.EmployeeId}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Employee Name:</label>
+                <span flex="50">{{audit.EmployeeName}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Ip Address: </label>
+                <span flex="50">{{audit.IpAddress}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Mac Address: </label>
+                <span flex="50">{{audit.MacAddress}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Transaction Type :</label>
+                <span flex="50">{{audit.OperationType}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Transaction Time: </label>
+                <span flex="50">{{audit.TransactionTime|dateTime}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Browser: </label>
+                <span flex="50">{{audit.Browser}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Platform: </label>
+                <span flex="50">{{audit.Platform}}</span>
+            </div>
+            <div layout="row">
+                <label style="font-weight:bold" flex="50">Request Path: </label>
+                <span flex="50">{{audit.PageView}}</span>
+            </div>
+            <div layout="row" ng-if="before!=null||after!=null">
+                <label style="font-weight:bold" flex="50">Data before change: </label>
+                <md-button class="md-raised md-warn" ng-click="showChangeData($event,before,after)" flex="50"><i class="fa fa-eye"></i> View Change Data</md-button>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="hide()" style="margin-right:20px;" md-autofocus>
+            Ok
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,88 @@
+﻿<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">My Yearly Leave Plan</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div style="width:100% !important">
+        <div class="card">
+            <div class="card-block" style="width:100%">
+                <h3>Add New Yearly Plan</h3>
+                <div class="row">
+                    <div class="col-xlg-2">
+                        <div layout="row">
+                            <md-input-container flex="100">
+                                <label>Select Year</label>
+                                <md-select ng-model="newSelectYear" ng-disabled="newSelectYear!=null && isSelectYearlyPlan">
+                                    <md-option value="2016">2016</md-option>
+                                    <md-option value="2017">2017</md-option>
+                                    <md-option value="2018">2018</md-option>
+                                    <md-option value="2019">2019</md-option>
+                                    <md-option value="2020">2020</md-option>
+                                    <md-option value="2021">2021</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="col-xlg-2">
+                        <md-button ng-disabled="newSelectYear!=null && isSelectYearlyPlan" ng-click="OpenCalender(newSelectYear,$event)" class="md-raised md-success"><i class="fa fa-calendar"></i> Open Calender</md-button>
+                    </div>
+                </div>
+                <div ng-if="isSelectYearlyPlan">
+                    <div class="row">
+                        <div ng-repeat="month in arrangeYearlyDate" class="padded whiteFrame" md-whiteframe="2" flex-sm="25" flex-gt-sm="20" flex-gt-md="15" layout="column" layout-align="start center">
+                            <span style="font-weight:bold">{{month.MonthName}}</span>
+                            <div layout="row" layout-align="center center">
+                                <span ng-repeat="day in month.Day|orderBy" class="whiteFrameSpanColor">{{day}},</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="start center">
+                        <md-button class="md-raised button-cyan" ng-click="submitFinalYearlyLeavePlan()"><i class="fa fa-check-circle"></i> Submit</md-button>
+                        <md-button class="md-raised button-purple" ng-click="updateYearlyPlan($event)"><i class="fa fa-pencil-square"></i> Update</md-button>
+                        <md-button class="md-raised md-warn" ng-click="removeYearlyPlan()" style="margin-right:90px;"><i class="fa fa-trash-o"></i> Remove</md-button>
+                    </div>
+                </div>
+                <br />
+                <h3>View Your Old Leave Plan</h3>
+                <div class="row">
+                    <div class="col-xlg-2">
+                        <div layout="row">
+                            <md-input-container flex="100">
+                                <label>Select Year</label>
+                                <md-select ng-model="selectedYear">
+                                    <md-option value="2016">2016</md-option>
+                                    <md-option value="2017">2017</md-option>
+                                    <md-option value="2018">2018</md-option>
+                                    <md-option value="2019">2019</md-option>
+                                    <md-option value="2020">2020</md-option>
+                                    <md-option value="2021">2021</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="col-xlg-2">
+                        <md-button ng-click="SearchYearlyPlan(selectedYear)" class="md-raised md-primary"><i class="fa fa-search"></i> Search</md-button>
+                    </div>
+                </div>
+                <div ng-if="showProgress" class="row">
+                    <div layout="row" layout-align="center center" style="min-height:100px; width:100%">
+                        <md-progress-circular class="md-hue-1 md-accent" md-diameter="40px"></md-progress-circular>
+                    </div>
+                </div>
+                <div ng-if="result">
+                    <div class="row">
+                        <div ng-repeat="month in yearlyPlan" class="padded whiteFrame" md-whiteframe="2" flex-sm="25" flex-gt-sm="20" flex-gt-md="15" layout="column" layout-align="center center">
+                            <span style="font-weight:bold">{{month.MonthName}}</span>
+                            <div layout="row" layout-align="center center">
+                                <span ng-repeat="day in month.Day" class="whiteFrameSpanColor">{{day}},</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

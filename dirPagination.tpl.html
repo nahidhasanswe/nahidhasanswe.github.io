@@ -1,0 +1,8 @@
+﻿
+
+
+<div layout="row" ng-if="1 < pages.length" layout-align="start center">
+    <md-button class="md-icon-button md-raised md-warn" ng-disabled="pagination.current == 1" aria-label="Previous" ng-click="setCurrent(pagination.current - 1)"><</md-button>
+    <md-button class="md-icon-button md-raised" aria-label="Go to page {{pagination.current}}" ng-repeat="pageNumber in pages track by $index" ng-click="setCurrent(pageNumber)" ng-disabled="pageNumber == '...'" ng-class="{'md-primary':pagination.current == pageNumber}">{{pageNumber}}</md-button>
+    <md-button class="md-icon-button md-raised md-warn" ng-disabled="pagination.current == pagination.last" aria-label="Next" ng-click="setCurrent(pagination.current + 1)">></md-button>
+</div>

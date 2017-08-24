@@ -1,0 +1,50 @@
+﻿.button-primary{
+    background-color:#3F51B5 !important
+}
+
+.button-success{
+    background-color:#4CAF50 !important
+}
+
+.button-warning{
+    background-color:#F44336
+}
+
+.button-purple{
+    background-color:#9C27B0 !important
+}
+
+.button-lime{
+    background-color:#CDDC39 !important
+}
+.button-lime:hover{
+    background-color:#AFB42B !important
+}
+
+.button-cyan{
+    background-color:#00BCD4 !important
+}
+.button-cyan:hover{
+    background-color:#0097A7 !important
+}
+
+.whiteFrame{
+    background-color:#CDDC39 !important;
+    margin:5px !important;
+}
+.whiteFrame:hover{
+    background-color:#AFB42B !important;
+}
+
+.whiteFrameSpanColor{
+    color:#9C27B0 !important;
+    padding:3px;
+    min-height:40px !important;
+}
+
+.picker-day.birthday:not(.picker-selected){
+    background-color: #ded100;
+    color: #000;
+}
+
+
